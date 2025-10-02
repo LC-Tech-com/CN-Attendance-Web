@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>University Attendance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: oklab(47.344% 0.06269 -0.11829);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2px 5px;
+      background-color: #73cdfe;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      margin: 0;
+      flex: 1;
+      text-align: center;
+    }
+
+    .header img {
+      height: 80px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 25px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #003366;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0055a5;
+    }
+
+    .admin-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .admin-link a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .admin-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <div class="header">
+    <a href="https://www.nielit.gov.in/" target="_blank">
+      <img src="{{ url_for('static', filename='nielit.png') }}" alt="NIELIT Logo">
+    </a>
+    <h1>National Institute of Electronics and Information Technology - Imphal</h1>
+  </div>
+    <!-- Flash messages -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul style="color: green;">
+      {% for msg in messages %}
+        <li>{{ msg }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+  <!-- Login Form -->
+  <div class="container">
+    <h2>Student Attendance</h2>
+<form action="/submit" method="POST">
+  <label>Name:</label>
+  <input type="text" name="name" required><br><br>
+  <label>Roll Number:</label>
+  <input type="text" name="roll_no" required><br><br>
+  <button type="submit" id="submitBtn">Submit</button>
+</form>
+
+    <div class="admin-link">
+      <a href="/admin">Admin Login</a>
+    </div>
+  </div>
+</body>
+</html>
